@@ -1,7 +1,7 @@
 import React from 'react';
-import bg1 from './Card-bg-1.png'
-import bg2 from './Card-bg-2.png'
-import bg3 from './Card-bg-3.png'
+import bg1 from './card-bg-1.png'
+import bg2 from './card-bg-2.png'
+import bg3 from './card-bg-3.png'
 import Email from './email.svg'
 import Phone from './phone.svg'
 

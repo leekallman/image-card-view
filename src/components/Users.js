@@ -25,7 +25,7 @@ const Users = () => {
                 <h1 style={{fontSize:`7vw`}}>Meet the Team</h1>
             </header>
             
-            <CardWrapper data={data}/>
+            <CardWrapper data={data} setData={setData}/>
             
         </div>
     );
