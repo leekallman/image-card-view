@@ -5,7 +5,7 @@ import bg3 from './card-bg-3.png'
 import Email from './email.svg'
 import Phone from './phone.svg'
 
-const Card = ({ user }) => {
+const Card = ({ person }) => {
     const bgArray = [bg1, bg2, bg3];
     const randomIndex = Math.floor(Math.random() * bgArray.length);
     const selectedPicture = bgArray[randomIndex];
@@ -32,15 +32,15 @@ const Card = ({ user }) => {
         margin:`auto`
     }
     return (
-        <div style={cardStyle} data-testid={`card-${user.id.value}`} >
-            <h3 style={{fontSize:`4vw`, letterSpacing:`1px`}}>{user.name.first} {user.name.last}</h3>
-            <img src={user.picture.medium} alt="user thumbnail" style={imgStyles}/>
-            <h4 style={{fontSize:`4vw`, fontWeight:`300`}}>{user.location.city}</h4>
+        <div style={cardStyle} data-testid={`card-${person.id.value}`} >
+            <h3 style={{fontSize:`4vw`, letterSpacing:`1px`}}>{person.name.first} {person.name.last}</h3>
+            <img src={person.picture.medium} alt="person thumbnail" style={imgStyles}/>
+            <h4 style={{fontSize:`4vw`, fontWeight:`300`}}>{person.location.city}</h4>
             <div>
-                <a href={`mailto:${user.email}`} style={{marginRight:`2vw`}}>
+                <a href={`mailto:${person.email}`} style={{marginRight:`2vw`}}>
                     <img src={Email} alt="mail icon" />
                 </a>
-                <a href={`tel:${user.cell}`}>
+                <a href={`tel:${person.cell}`}>
                     <img src={Phone} alt="phone icon" />
                 </a>
             </div>
