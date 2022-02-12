@@ -1,0 +1,11 @@
+input {
+  margin: 2vh auto;
+  border: none;
+  border-bottom: 2px solid black;
+  background: transparent;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  padding: 7px;
+  text-indent: 25px;
+  width: 100%;
+}

@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import Card from './Card'
-import SortingIcon from './sorting-icon.svg'
+import Card from './Card';
+import SortingIcon from './sorting.svg';
+import GridIcon from './grid.svg';
+import ListIcon from './list.svg';
+import './CardWrapper.css'
 
 const Cardwrapper = ({ data, setData, search }) => {
-    const wrapperStyle = {
-        display: `grid`,
-        gridTemplateColumns: `repeat(2, 1fr)`,
-        gridGap: `7vw`
-    }
+
     const [currentSort, setCurrentSort] = useState('down');
+    const [toggle, setToggle] = useState(true);
+
+    const toggler = () =>{
+        setToggle(prev => !prev)
+    }
 
     const sortTypes = {
         up: {
@@ -23,18 +27,20 @@ const Cardwrapper = ({ data, setData, search }) => {
         if (currentSort === 'down') nextSort = 'up';
         else nextSort = 'down';
         setCurrentSort(nextSort);
-        console.log(data)
         // //update state to sorted data array
-        let sorted = [...data].sort(sortTypes(currentSort).fn);
+        let sorted = [...data].sort(sortTypes[currentSort].fn);
         setData(sorted);
     }
 
     return (
         <div>
-            <button onClick={onSortChange}><img src={SortingIcon} alt="sorting icon"/></button>
-            <div style={wrapperStyle}>
+            <div className="button-bar">
+                <button onClick={onSortChange}><img src={SortingIcon} alt="sorting icon"/></button>
+                <button onClick={toggler}><img src={toggle ? ListIcon : GridIcon} alt="grid icon"/></button>
+            </div>
+            <div className={`card-wrapper ${toggle ? "grid" : "list"}`}>
             {search(data).map((person, index) =>
-                <Card key={index} person={person} />
+                <Card key={index} person={person} toggle={toggle} />
             )}
             </div>
         </div>

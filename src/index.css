@@ -1,5 +1,6 @@
 :root {
   --beige: #ebe9e4;
+  --grey: #666666;
 }
 * {
   box-sizing: border-box;
@@ -14,6 +15,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--beige);
+  padding: 7vw 5vh;
 }
 
 code {
@@ -25,7 +27,24 @@ button {
   border: none;
   background: transparent;
 }
+a {
+  width: 100%;
+}
 
-input:focus {
+input:focus,
+a:focus {
   outline: none;
+}
+
+@media screen and (min-width: 900px) {
+  body {
+    width: 80vw;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 1200px) {
+  body {
+    width: 60vw;
+    margin: auto;
+  }
 }

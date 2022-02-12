@@ -2,42 +2,36 @@ import React from 'react';
 import bg1 from './card-bg-1.png'
 import bg2 from './card-bg-2.png'
 import bg3 from './card-bg-3.png'
+import bg4 from './card-bg-4.png'
+import bg5 from './card-bg-5.png'
+import bg6 from './card-bg-6.png'
 import Email from './email.svg'
 import Phone from './phone.svg'
+import './Card.css'
 
-const Card = ({ person }) => {
+const Card = ({ person, toggle }) => {
     const bgArray = [bg1, bg2, bg3];
     const randomIndex = Math.floor(Math.random() * bgArray.length);
     const selectedPicture = bgArray[randomIndex];
 
-    const cardStyle={
+    const bgArrayList = [bg4, bg5, bg6];
+    const randomIndexList = Math.floor(Math.random() * bgArrayList.length);
+    const selectedPictureList = bgArrayList[randomIndexList];
+
+    const cardStyle = {
         backgroundImage: `url(${selectedPicture})`,
-        backgroundPosition:`center`,
-        backgroundSize:`cover`, 
-        height: `30vh`,
-        borderRadius: `13px`,
-        textAlign: `center`,
-        padding:`7vw 3vw`,
-        display:`flex`,
-        flexDirection:`column`,
-        justifyContent:`space-between`,
-        boxShadow: `0px 1.3px 2.57px rgb(0, 0, 0, 0.1)`,
     }
 
-    const imgStyles={
-        boxShadow: `0px 2.57px 2.57px rgb(0, 0, 0, 0.2)`,
-        height:`25vw`, 
-        width:`25vw`, 
-        borderRadius:`50%`, 
-        margin:`auto`
+    const cardListStyle = {
+        backgroundImage: `url(${selectedPictureList})`,
     }
     return (
-        <div style={cardStyle} data-testid={`card-${person.id.value}`} >
-            <h3 style={{fontSize:`4vw`, letterSpacing:`1px`}}>{person.name.first} {person.name.last}</h3>
-            <img src={person.picture.medium} alt="person thumbnail" style={imgStyles}/>
-            <h4 style={{fontSize:`4vw`, fontWeight:`300`}}>{person.location.city}</h4>
-            <div>
-                <a href={`mailto:${person.email}`} style={{marginRight:`2vw`}}>
+        <div style={toggle ? cardStyle : cardListStyle} data-testid={`card-${person.id.value}`} className={`card ${toggle ? "grid-card" : "list-card"}`}>
+            <h2>{person.name.first} {person.name.last}</h2>
+            <img src={person.picture.medium} alt="person thumbnail" />
+            <h3>{person.location.city}</h3>
+            <div className="links">
+                <a href={`mailto:${person.email}`}>
                     <img src={Email} alt="mail icon" />
                 </a>
                 <a href={`tel:${person.cell}`}>
