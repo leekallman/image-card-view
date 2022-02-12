@@ -21,18 +21,26 @@ const Cardwrapper = ({ data, setData, search }) => {
 
     const sortTypes = {
         up: {
-            fn: (a, b) => a.name.first.toLowerCase()-b.name.first.toLowerCase()
+            fn: (a, b) => {
+                let x = a.name.first.toUpperCase(),
+                y = b.name.first.toUpperCase();
+                return x === y ? 0 : x > y ? 1 : -1;
+            }
         },
         down: {
-            fn: (a, b) => b.name.first.toLowerCase()-a.name.first.toLowerCase()
+            fn: (a, b) => {
+                let x = a.name.first.toUpperCase(),
+                y = b.name.first.toUpperCase();
+                return x === y ? 0 : x < y ? 1 : -1;
+            }
         }
     }
+
     const onSortChange = () => {
         let nextSort;
         if (currentSort === 'down') nextSort = 'up';
         else nextSort = 'down';
         setCurrentSort(nextSort);
-        // //update state to sorted data array
         let sorted = [...data].sort(sortTypes[currentSort].fn);
         setData(sorted);
     }
@@ -41,9 +49,9 @@ const Cardwrapper = ({ data, setData, search }) => {
         <div>
             <div className="button-bar">
                 <button onClick={onSortChange}><img src={SortingIcon} alt="sorting icon"/></button>
-                <button onClick={toggler}><img src={toggle ? ListIcon : GridIcon} alt="grid icon"/></button>
+                <button onClick={toggler}><img data-testid={`toggle-btn`} src={toggle ? ListIcon : GridIcon} alt="grid icon"/></button>
             </div>
-            <div className={`card-wrapper ${toggle ? "grid" : "list"}`}>
+            <div className={`card-wrapper ${toggle ? "grid" : "list"}`} data-testid={`card-wrapper`}>
             <Suspense maxDuration={300} fallback={<div>Loading...</div>}>
             {search(data).map((person, index) =>
                 <Card key={index} person={person} toggle={toggle} />

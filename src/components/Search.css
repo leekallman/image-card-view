@@ -8,4 +8,11 @@ input {
   padding: 7px;
   text-indent: 25px;
   width: 100%;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  input {
+    font-size: 24px;
+  }
 }
