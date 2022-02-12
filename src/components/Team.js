@@ -16,11 +16,15 @@ const Team = () => {
             .then(result => {
                 setIsLoaded(true);
                 setData(result.results);
+                if (Object.keys(result).length === 0) {
+                    return <div>No data found</div>
+                }
             },
                 (error) => {
                     setIsLoaded(true);
                     setError(error);
                 });
+
     }, [])
     // filter the items use array property .some() to return an item even if other requirements didn't match
     function search(data) {

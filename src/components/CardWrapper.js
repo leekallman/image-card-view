@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import Card from './Card';
+import React, {useState, lazy, Suspense} from 'react';
 import SortingIcon from './sorting.svg';
 import GridIcon from './grid.svg';
 import ListIcon from './list.svg';
 import './CardWrapper.css'
 
-const Cardwrapper = ({ data, setData, search }) => {
+const Card = lazy(() => {
+    return new Promise(resolve => setTimeout(resolve, 1*1000)).then(() => 
+     import('./Card')
+    );
+});
 
+const Cardwrapper = ({ data, setData, search }) => {
+    
     const [currentSort, setCurrentSort] = useState('down');
     const [toggle, setToggle] = useState(true);
 
@@ -39,9 +44,11 @@ const Cardwrapper = ({ data, setData, search }) => {
                 <button onClick={toggler}><img src={toggle ? ListIcon : GridIcon} alt="grid icon"/></button>
             </div>
             <div className={`card-wrapper ${toggle ? "grid" : "list"}`}>
+            <Suspense maxDuration={300} fallback={<div>Loading...</div>}>
             {search(data).map((person, index) =>
                 <Card key={index} person={person} toggle={toggle} />
             )}
+            </Suspense>
             </div>
         </div>
     );
