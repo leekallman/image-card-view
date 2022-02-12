@@ -24,6 +24,7 @@
 }
 .card .links img {
   width: 3vw;
+  height: 3vw;
 }
 .card .links > a img:hover {
   transform: scale(1.1);
@@ -71,8 +72,11 @@
   top: 35%;
 }
 .list-card .links {
-  left: 80%;
-  top: 32%;
+  left: 85%;
+  top: 70%;
+}
+.list-card .links > a:first-child {
+  margin-right: 1vw;
 }
 .card .links img {
   width: 5vw;
@@ -114,7 +118,7 @@
   }
   .list-card .links {
     left: 84%;
-    top: -30%;
+    top: 40%;
   }
   .card .links > a:first-child {
     margin-right: 2vw;
@@ -139,7 +143,6 @@
   }
   .list-card .links {
     left: 84%;
-    top: -40%;
   }
   .card .links > a:first-child {
     margin-right: 1vw;
@@ -180,7 +183,6 @@
     top: 50%;
   }
   .list-card .links {
-    top: -70%;
     left: 85%;
   }
   .card .links img {
